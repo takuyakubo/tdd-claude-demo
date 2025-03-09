@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const apiRoutes = require('./routes/api');
+const userRoutes = require('./src/routes/user.routes');
 
 // Middleware
 app.use(express.json());
@@ -12,6 +13,9 @@ app.get('/', (req, res) => {
 
 // API Routes
 app.use('/api', apiRoutes);
+
+// User Routes
+app.use('/api/users', userRoutes);
 
 // Server
 const PORT = process.env.PORT || 3000;
