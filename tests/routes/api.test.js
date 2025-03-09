@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const apiRoutes = require('../api');
+const apiRoutes = require('../../routes/api');
 
 // Create a test app
 const app = express();

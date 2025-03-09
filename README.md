@@ -30,9 +30,15 @@ npm start
 
 - `index.js` - メインアプリケーションファイル
 - `src/` - ソースコードディレクトリ
-- `src/__tests__/` - ソースコードのテスト
-- `routes/` - ルーティングファイル
-- `routes/__tests__/` - ルーティングのテスト
+  - `controllers/` - コントローラー
+  - `models/` - モデル
+  - `routes/` - ルート（APIエンドポイント）
+- `routes/` - 基本ルーティングファイル
+- `tests/` - テストディレクトリ
+  - `controllers/` - コントローラーのテスト
+  - `models/` - モデルのテスト
+  - `routes/` - ルートのテスト
+  - `integration/` - 統合テスト
 
 ## TDDプロセス
 
