@@ -2,6 +2,7 @@ const userController = require('../../src/controllers/user.controller');
 
 describe('User Controller', () => {
   describe('registerUser', () => {
+    // テスト: 有効な入力（メールアドレス、パスワード、名前）でユーザー登録し、ID含むオブジェクトを返す
     it('should register a user with valid input and return user object with ID', async () => {
       const req = {
         body: {
@@ -25,7 +26,7 @@ describe('User Controller', () => {
           name: 'Test User'
         })
       );
-      // Password should not be returned
+      // セキュリティのためパスワードは返さない
       expect(res.json).not.toHaveBeenCalledWith(
         expect.objectContaining({
           password: expect.any(String)
@@ -33,6 +34,7 @@ describe('User Controller', () => {
       );
     });
 
+    // テスト: メールアドレスが欠けている場合は400エラーを返す（必須項目の検証）
     it('should return 400 if email is missing', async () => {
       const req = {
         body: {
@@ -53,6 +55,7 @@ describe('User Controller', () => {
       });
     });
 
+    // テスト: パスワードが欠けている場合は400エラーを返す（必須項目の検証）
     it('should return 400 if password is missing', async () => {
       const req = {
         body: {
@@ -73,6 +76,7 @@ describe('User Controller', () => {
       });
     });
 
+    // テスト: メールアドレスの形式が無効な場合は400エラーを返す（メールアドレス形式の検証）
     it('should return 400 if email format is invalid', async () => {
       const req = {
         body: {
@@ -94,6 +98,7 @@ describe('User Controller', () => {
       });
     });
 
+    // テスト: パスワードが8文字未満の場合は400エラーを返す（パスワード長の検証）
     it('should return 400 if password is less than 8 characters', async () => {
       const req = {
         body: {
@@ -115,10 +120,11 @@ describe('User Controller', () => {
       });
     });
 
+    // テスト: 名前なしでユーザー登録できることを検証（名前はオプション）
     it('should register a user without name', async () => {
       const req = {
         body: {
-          email: 'test2@example.com', // Use a different email to avoid conflict
+          email: 'test2@example.com', // 競合を避けるため異なるメールアドレスを使用
           password: 'password123'
         }
       };
